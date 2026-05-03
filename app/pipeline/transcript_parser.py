@@ -35,13 +35,15 @@ def _split_speaker(raw: str) -> tuple[str, str | None]:
     return raw.strip(), None
 
 
-def classify_speaker(raw: str, text: str) -> str:
+def classify_speaker(raw: str, text: str, speaker_org: str | None = None) -> str:
     blob = f"{raw} {text[:180]}".lower()
     if any(signal in blob for signal in MODERATOR_SIGNALS):
         return "moderator"
     if any(signal in blob for signal in MANAGEMENT_SIGNALS):
         return "management"
     if any(signal in blob for signal in ANALYST_SIGNALS):
+        return "analyst"
+    if speaker_org:
         return "analyst"
     if raw.lower() in {"management", "analyst", "moderator", "operator"}:
         return "moderator" if raw.lower() in {"moderator", "operator"} else raw.lower()
@@ -70,11 +72,12 @@ def parse_transcript(text: str) -> list[dict]:
                 raw = matched.group(1).strip()
                 body = matched.group(2)
             speaker_name, speaker_org = _split_speaker(raw)
+            speaker_role = classify_speaker(raw, body, speaker_org=speaker_org)
             current = {
                 "turn_index": len(turns),
                 "speaker_raw": raw,
                 "speaker_name": speaker_name,
-                "speaker_role": classify_speaker(raw, body),
+                "speaker_role": speaker_role,
                 "speaker_org": speaker_org,
                 "speaker_title": None,
                 "text": body.strip(),
