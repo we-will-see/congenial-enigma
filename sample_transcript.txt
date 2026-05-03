@@ -1,0 +1,20 @@
+INSTRUCTIONS — DELETE BEFORE HANDING TO AGENT
+============================================
+Open any concall transcript PDF from BSE India for one of your covered companies.
+Select-all, copy, paste the full text here, replacing everything from this line down.
+
+What to pick:
+- Any company from the 30-company universe
+- Any quarter from FY23–FY26 (recent preferred)
+- A text-based PDF (not scanned) — open it in Adobe, if you can select the text it is text-based
+
+What NOT to do:
+- Do not summarise or edit the text
+- Do not clean up formatting
+- Paste it raw, exactly as copied from the PDF, including headers, page numbers, and any garbled characters
+- The messier the better — this tests the parser on real input
+
+Minimum length: the full transcript, typically 8,000–20,000 words.
+
+PASTE FULL TRANSCRIPT TEXT BELOW THIS LINE:
+===========================================

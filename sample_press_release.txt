@@ -1,0 +1,23 @@
+INSTRUCTIONS — DELETE BEFORE HANDING TO AGENT
+============================================
+Open any quarterly results press release PDF from BSE India for one of your covered companies.
+Select-all, copy, paste the full text here, replacing everything from this line down.
+
+What to pick:
+- Same company as your sample_transcript.txt preferred (so they match on company and quarter)
+- The results press release for the same quarter as the transcript
+- A text-based PDF — these almost always are
+
+What to look for on BSE:
+- Filing category: "Results" or "Financial Results"
+- The document titled something like "Unaudited Financial Results for Q3FY25"
+- Should contain: a financial table (P&L), an operational highlights section, and a management commentary paragraph
+
+What NOT to do:
+- Do not type the numbers manually
+- Do not summarise
+- Paste raw including table formatting, even if it looks broken — the extractor needs to handle this
+- Include everything: page 1 through the end, including any auditor notes or signatures at the bottom
+
+PASTE FULL PRESS RELEASE TEXT BELOW THIS LINE:
+===============================================

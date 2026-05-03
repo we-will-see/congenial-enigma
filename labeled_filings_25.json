@@ -1,0 +1,265 @@
+[
+  {
+    "_instructions": "DELETE THIS OBJECT BEFORE HANDING TO AGENT. Fill in 25 real BSE filing records. Go to bseindia.com, search filings for any of the 30 covered companies, and copy the filing metadata exactly. Valid document types: concall_transcript, investor_presentation, results_press_release, management_change, board_meeting_outcome, other. Try to include at least 3 examples of each type. The CATEGORYNAME and SUBCATEGORYNAME fields must be copied exactly as BSE shows them.",
+    "_example_completed_entry": {
+      "id": 1,
+      "scrip_code": "540222",
+      "company_name": "Laurus Labs",
+      "CATEGORYNAME": "Concall",
+      "SUBCATEGORYNAME": "Transcript",
+      "HEADLINE": "Transcript of Earnings Call for Q3FY2025",
+      "NEWS_DT": "23-JAN-2025",
+      "expected_document_type": "concall_transcript"
+    }
+  },
+  {
+    "id": 1,
+    "scrip_code": "FILL IN — e.g. 540222",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN — copy exactly from BSE",
+    "SUBCATEGORYNAME": "FILL IN — copy exactly from BSE",
+    "HEADLINE": "FILL IN — copy exactly from BSE",
+    "NEWS_DT": "FILL IN — e.g. 23-JAN-2025",
+    "expected_document_type": "FILL IN — concall_transcript OR investor_presentation OR results_press_release OR management_change OR board_meeting_outcome OR other"
+  },
+  {
+    "id": 2,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 3,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 4,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 5,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 6,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 7,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 8,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 9,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 10,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 11,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 12,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 13,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 14,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 15,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 16,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 17,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 18,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 19,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 20,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 21,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 22,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 23,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 24,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  },
+  {
+    "id": 25,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "CATEGORYNAME": "FILL IN",
+    "SUBCATEGORYNAME": "FILL IN",
+    "HEADLINE": "FILL IN",
+    "NEWS_DT": "FILL IN",
+    "expected_document_type": "FILL IN"
+  }
+]

@@ -1,0 +1,464 @@
+[
+  {
+    "_instructions": "DELETE THIS OBJECT BEFORE HANDING TO AGENT. Fill in 50 real speaker turns from actual BSE concall transcripts. For each turn: copy the speaker name exactly as it appears in the PDF, copy the first 30-40 words of what they said, and label their role. Only valid roles are: management, analyst, moderator. Aim for a mix: ~20 management, ~25 analyst, ~5 moderator. Draw from at least 5 different companies and at least 3 different quarters.",
+    "_example_completed_entry": {
+      "id": 1,
+      "source_company": "Laurus Labs",
+      "source_quarter": "3QFY25",
+      "source_pdf_filename": "Laurus_3QFY25_Concall_Transcript.pdf",
+      "speaker_raw": "V.V. Ravi Kumar",
+      "text_excerpt": "Thank you. On the margin side, we expect to see improvement in Q4 as the new CDMO block comes online and utilization improves.",
+      "expected_role": "management"
+    }
+  },
+  {
+    "id": 1,
+    "source_company": "FILL IN — e.g. Laurus Labs",
+    "source_quarter": "FILL IN — e.g. 3QFY25",
+    "source_pdf_filename": "FILL IN — exact filename from BSE",
+    "speaker_raw": "FILL IN — copy speaker name exactly as in PDF",
+    "text_excerpt": "FILL IN — first 30-40 words of what they said",
+    "expected_role": "FILL IN — management OR analyst OR moderator"
+  },
+  {
+    "id": 2,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 3,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 4,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 5,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 6,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 7,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 8,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 9,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 10,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 11,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 12,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 13,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 14,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 15,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 16,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 17,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 18,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 19,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 20,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 21,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 22,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 23,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 24,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 25,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 26,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 27,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 28,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 29,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 30,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 31,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 32,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 33,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 34,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 35,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 36,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 37,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 38,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 39,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 40,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 41,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 42,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 43,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 44,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 45,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 46,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 47,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 48,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 49,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  },
+  {
+    "id": 50,
+    "source_company": "FILL IN",
+    "source_quarter": "FILL IN",
+    "source_pdf_filename": "FILL IN",
+    "speaker_raw": "FILL IN",
+    "text_excerpt": "FILL IN",
+    "expected_role": "FILL IN"
+  }
+]

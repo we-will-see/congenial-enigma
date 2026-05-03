@@ -1,0 +1,447 @@
+[
+  {
+    "_instructions": "DELETE THIS OBJECT BEFORE HANDING TO AGENT. Fill in 25 real management change filings. For each one: (1) go to BSE India, find a Regulation 30 intimation for a director/KMP change, (2) paste the full raw text of the filing into raw_filing_text, (3) manually fill in the expected_output fields from reading the filing yourself. Valid change_type values: appointment, resignation, retirement, cessation, re_appointment, additional_charge. Valid role_category values: kmp, board_executive, board_non_executive, board_independent. If a single filing announces multiple changes, create one entry per change with the same raw_filing_text.",
+    "_example_completed_entry": {
+      "id": 1,
+      "scrip_code": "540222",
+      "company_name": "Laurus Labs",
+      "filing_date": "2024-09-15",
+      "bse_filing_id": "20240915-44",
+      "raw_filing_text": "This is to inform that the Board of Directors of Laurus Labs Limited at their meeting held on September 14, 2024 have approved the appointment of Mr. V.V. Ravi Kumar as Chief Financial Officer (CFO) of the Company with effect from October 1, 2024...",
+      "expected_output": {
+        "person_name": "V.V. Ravi Kumar",
+        "role": "Chief Financial Officer",
+        "role_category": "kmp",
+        "change_type": "appointment",
+        "effective_date": "2024-10-01",
+        "reason": null,
+        "din": null
+      }
+    }
+  },
+  {
+    "id": 1,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN — YYYY-MM-DD",
+    "bse_filing_id": "FILL IN — from BSE",
+    "raw_filing_text": "FILL IN — paste full text of the BSE filing here",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN — exact title as stated",
+      "role_category": "FILL IN — kmp OR board_executive OR board_non_executive OR board_independent",
+      "change_type": "FILL IN — appointment OR resignation OR retirement OR cessation OR re_appointment OR additional_charge",
+      "effective_date": "FILL IN — YYYY-MM-DD or null if not stated",
+      "reason": "FILL IN — only if explicitly stated in filing, else null",
+      "din": "FILL IN — 8-digit DIN if present, else null"
+    }
+  },
+  {
+    "id": 2,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 3,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 4,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 5,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 6,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 7,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 8,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 9,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 10,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 11,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 12,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 13,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 14,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 15,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 16,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 17,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 18,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 19,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 20,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 21,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 22,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 23,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 24,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  },
+  {
+    "id": 25,
+    "scrip_code": "FILL IN",
+    "company_name": "FILL IN",
+    "filing_date": "FILL IN",
+    "bse_filing_id": "FILL IN",
+    "raw_filing_text": "FILL IN",
+    "expected_output": {
+      "person_name": "FILL IN",
+      "role": "FILL IN",
+      "role_category": "FILL IN",
+      "change_type": "FILL IN",
+      "effective_date": "FILL IN",
+      "reason": "FILL IN",
+      "din": "FILL IN"
+    }
+  }
+]
