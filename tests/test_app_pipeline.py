@@ -1,7 +1,7 @@
 from decimal import Decimal
 
 from app.pipeline.classifier import classify_filing
-from app.pipeline.financial_extractor import extract_financial_row_from_text, validate_financials
+from app.pipeline.financial_extractor import extract_financial_row_from_text, map_label, validate_financials
 from app.pipeline.transcript_parser import parse_transcript
 
 
@@ -35,3 +35,15 @@ def test_extract_financial_row_from_text_maps_labels():
     assert row["ebitda"] == Decimal("278")
     assert row["pat"] == Decimal("152")
     assert row["eps_basic"] == Decimal("2.81")
+
+
+def test_map_label_prefers_specific_alias_over_generic_tax():
+    assert map_label("Profit After Tax 152") == "pat"
+
+
+def test_parse_transcript_org_does_not_override_management_signal():
+    text = """
+Ravi Kumar (JPMorgan): As chief financial officer, I will walk you through the numbers.
+"""
+    turns = parse_transcript(text)
+    assert turns[0]["speaker_role"] == "management"
