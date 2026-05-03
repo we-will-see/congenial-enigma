@@ -24,10 +24,16 @@ def normalize_label(value: str) -> str:
 
 def map_label(label: str) -> str | None:
     normalized = normalize_label(label)
+    best_field: str | None = None
+    best_len = -1
     for field, aliases in LABEL_DICT.items():
-        if any(normalize_label(alias) in normalized or normalized in normalize_label(alias) for alias in aliases):
-            return field
-    return None
+        for alias in aliases:
+            normalized_alias = normalize_label(alias)
+            if normalized_alias in normalized or normalized in normalized_alias:
+                if len(normalized_alias) > best_len:
+                    best_field = field
+                    best_len = len(normalized_alias)
+    return best_field
 
 
 def parse_number(value: str) -> Decimal | None:
