@@ -1,21 +1,73 @@
-# IndiaIR MVP
+# IndiaIR Repository Guide
 
-IndiaIR is a FastAPI + Streamlit MVP for ingesting BSE investor-relations filings, extracting document content, indexing keyword and semantic search, and answering RAG questions with citations.
+IndiaIR is an investor-relations intelligence system for ingesting BSE filings, extracting structured information, indexing both keyword + semantic retrieval, and powering grounded Q&A with citations.
 
-## Stack
+This README is a practical guide for **what this repo contains**, **how to run it**, and **how to work on it safely**.
+
+## 1) What this repo includes
+
+There are two main backend code trees:
+
+- `app/`: the primary FastAPI app + pipeline modules that align with the current API routes.
+- `api/`, `services/`, `ingestion/`, `extraction/`, `indexing/`: earlier/parallel module layout still present in the repository.
+
+There are also two UI entrypoints:
+
+- `ui/app.py`: Streamlit UI for the FastAPI backend.
+- `frontend/streamlit_app.py`: additional Streamlit app variant.
+
+Because both old and newer layouts exist, start from `app/main.py` + `app/api/v1/*` for current backend behavior.
+
+## 2) High-level architecture
+
+1. **Ingestion**
+   - Poll/capture filing metadata and documents.
+2. **Extraction & classification**
+   - Classify documents (transcript, press release, financials, management changes, etc.).
+   - Parse document text into structured entities.
+3. **Storage + indexing**
+   - Persist data in PostgreSQL.
+   - Store vectors (pgvector) for semantic retrieval.
+   - Index searchable fields in Elasticsearch.
+4. **Serving layer**
+   - FastAPI exposes health, company, document, search, and Q&A endpoints.
+5. **UI**
+   - Streamlit apps provide exploratory workflows over API results.
+
+For deeper product/engineering context, see:
+
+- `TECH_SPEC.md`
+- `ARCH_DESIGN.md`
+- `QUALITY_SPEC.md`
+- `RELIABILITY_DEVOPS.md`
+- `SECURITY_COMPLIANCE.md`
+
+## 3) Repository map
+
+See full map in `docs/REPO_GUIDE.md`.
+
+Quick summary:
+
+- `app/api/v1/`: API routes (`health`, `companies`, `documents`, `search`, `qa`, `management_changes`).
+- `app/models/`: SQLAlchemy ORM models for core entities.
+- `app/pipeline/`: extraction, chunking, embeddings, indexing, orchestration, CLI.
+- `app/services/`: application service layer used by endpoints.
+- `app/db/`, `alembic/`: DB session, base metadata, migrations.
+- `tests/`: pipeline and classifier/extractor tests.
+- `scripts/`: seeding + mock ingestion utilities.
+- `ui/`, `frontend/`: Streamlit UIs.
+
+## 4) Local setup
+
+### Prereqs
 
 - Python 3.11
-- FastAPI 0.111, SQLAlchemy 2.0, Alembic 1.13
-- PostgreSQL 16 + pgvector, Elasticsearch 8.13
-- PyMuPDF, pdfplumber, pytesseract, camelot
-- OpenAI `text-embedding-3-small` for embeddings
-- Anthropic Claude for RAG and structured fallback extraction
-- Streamlit 1.35, Plotly, Pandas
+- Docker + Docker Compose
+- PostgreSQL 16 and Elasticsearch 8.13 (via compose)
 
-## Setup
+### Install
 
 ```bash
-cp .env.example .env
 python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -25,53 +77,73 @@ python scripts/seed_companies.py
 python scripts/mock_ingest.py
 ```
 
-Set `OPENAI_API_KEY` for live embeddings and `ANTHROPIC_API_KEY` for Claude-backed RAG. Without keys, the app uses deterministic local embeddings and an extractive fallback answer so the MVP remains runnable.
+### Environment variables
 
-## Run
+Set API keys as needed:
+
+- `OPENAI_API_KEY` (embeddings)
+- `ANTHROPIC_API_KEY` (LLM-backed Q&A / extraction fallback)
+
+Without keys, portions of the app may run in deterministic/local fallback mode depending on configured code paths.
+
+## 5) Run the system
+
+### Backend
 
 ```bash
-uvicorn api.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8000
+```
+
+### UI
+
+```bash
 streamlit run ui/app.py
 ```
 
-Backend health check:
+### Health check
 
 ```bash
 curl http://localhost:8000/api/v1/health
 ```
 
-## Main Endpoints
+## 6) Core API endpoints
 
 - `GET /api/v1/health`
 - `GET /api/v1/companies`
-- `GET /api/v1/companies/{id}`
-- `GET /api/v1/companies/{id}/events`
-- `GET /api/v1/companies/{id}/financials`
-- `GET /api/v1/management-changes`
+- `GET /api/v1/companies/{company_id}`
+- `GET /api/v1/documents`
 - `POST /api/v1/search/keyword`
 - `POST /api/v1/search/semantic`
 - `POST /api/v1/qa/ask`
-- `POST /api/v1/pipeline/mock-ingest`
-- `POST /api/v1/pipeline/process/{document_id}`
+- `GET /api/v1/management-changes`
 
-## Pipeline
+> Tip: check route modules under `app/api/v1/` for exact request/response schemas.
 
-The pipeline modules are under `ingestion/`, `extraction/`, `indexing/`, and `services/`.
+## 7) Testing and verification
 
-- `BSEPoller` calls the BSE corporate filings API with the TECH_SPEC parameters and stores events/documents idempotently.
-- `DocumentClassifier` maps BSE category/subcategory and headline keywords to the required document types.
-- `TextExtractor` uses PyMuPDF first and Tesseract OCR if text quality is low.
-- Parsers write turns, slides, press-release sections, management changes, and P&L financials.
-- `EmbeddingIndexer` stores pgvector embeddings using OpenAI when configured, with a local fallback for development.
-- `ESIndexer` writes the specified Elasticsearch mapping and content documents.
-
-## Development Notes
-
-Run a minimal verification pass:
+Run these before committing:
 
 ```bash
-python -m compileall api ingestion extraction indexing services scripts ui
+python -m compileall app api ingestion extraction indexing services scripts ui frontend tests
 pytest
 ```
 
-The sample files included in the repo are placeholders, so `scripts/mock_ingest.py` creates a small Laurus Labs 3QFY25 corpus that exercises transcript parsing, financial extraction, search, semantic retrieval, and Q&A citations.
+## 8) Known repo realities (important)
+
+- The repo currently contains **duplicate/parallel module trees** (`app/*` and older `api|services|ingestion|...` paths).
+- Some docs refer to earlier entrypoints (`api.main:app`) while current route layout in `app/api/v1` suggests using `app.main:app`.
+- Keep new feature work centered in the `app/` tree unless explicitly refactoring legacy modules.
+
+## 9) Suggested cleanup plan
+
+If you want to “fully organize” this repo next, execute in phases:
+
+1. Pick canonical backend tree (`app/`) and deprecate old duplicates.
+2. Move product/architecture specs into `docs/specs/`.
+3. Add `.env.example` with all required runtime settings.
+4. Add `Makefile` (`make setup`, `make test`, `make run-api`, `make run-ui`).
+5. Add CI for lint + tests + migration checks.
+
+---
+
+If you want, I can do the next step and apply a **safe structural refactor** (non-breaking file moves + import compatibility layer) in a follow-up change.
