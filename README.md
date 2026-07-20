@@ -49,6 +49,16 @@ When upgrading an existing database, migration `0002` removes the legacy, non-pa
 
 Interactive API documentation is available at `http://localhost:8000/docs`.
 
+### One-command VPS deployment
+
+On a VPS with Docker Engine and the Compose plugin:
+
+```bash
+./deploy/vps-up.sh
+```
+
+This builds the API with Tesseract OCR, starts PostgreSQL/pgvector, applies migrations, seeds companies, configures persistent volumes, and waits for both health checks. The safe default uses an SSH tunnel rather than publicly exposing the unauthenticated API. See `docs/VPS_DEPLOYMENT.md` for first deployment, public-test access, updates, logs, and shutdown instructions.
+
 ## Manual document intake
 
 Create a notebook:
