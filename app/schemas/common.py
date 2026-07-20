@@ -89,5 +89,5 @@ class ManagementChangeOut(BaseModel):
 class HealthResponse(BaseModel):
     status: str
     db: str
-    es: str
+    storage: str
     timestamp: datetime

@@ -1,41 +1,21 @@
-# Repo Map and Contributor Notes
+# Repository guide
 
-## Top-level directories/files
+`app/` is the only application code tree.
 
-- `app/` — current primary backend application.
-- `api/` — legacy/parallel backend package.
-- `services/` — legacy/parallel service modules.
-- `ingestion/`, `extraction/`, `indexing/` — modular pipeline components (legacy/parallel and still useful).
-- `ui/`, `frontend/` — Streamlit frontends.
-- `tests/` — automated tests.
-- `scripts/` — local scripts for seed/mock ingest.
-- `alembic/` + `alembic.ini` — DB migration setup.
-- `docker-compose.yml` — local infra services.
-- `requirements.txt` — Python dependencies.
-- `*.md` specs — product, architecture, reliability, security, UX docs.
+## Runtime map
 
-## Core backend (`app/`) detail
+- `app/main.py` — FastAPI bootstrap
+- `app/api/v1/` — HTTP routes for documents, notebooks, companies, and deterministic extracts
+- `app/models/` — SQLAlchemy document, page, chunk, notebook, and derived-data models
+- `app/pipeline/` — BSE intake, file storage, PDF/OCR extraction, structural parsing, chunking, and embeddings
+- `app/services/` — manual intake, notebook lifecycle, and notebook search use cases
+- `app/search_notebook.py` — stable Python retrieval entry point for external consumers
+- `alembic/` — PostgreSQL and pgvector migrations
+- `scripts/seed_companies.py` — canonical company seed command
+- `tests/` — deterministic unit and contract tests
 
-- `app/main.py` — FastAPI app bootstrap.
-- `app/api/v1/` — HTTP routes.
-- `app/models/` — SQLAlchemy models.
-- `app/schemas/` — API/Pydantic schema objects.
-- `app/services/` — use-case/business services.
-- `app/db/` — DB engine/session/base.
-- `app/core/` — config/logging.
-- `app/pipeline/` — extraction/indexing orchestration.
-- `app/rag/` — prompts + QA service logic.
+## Responsibility boundary
 
-## Where to start as a new maintainer
+Enigma owns documents and evidence retrieval. Agent orchestration, investment analysis, generated answers, and user interfaces belong in the consuming system (currently planned as `glowing-garbanzo`).
 
-1. Read `README.md`.
-2. Read `ARCH_DESIGN.md` and `TECH_SPEC.md`.
-3. Run setup + tests locally.
-4. Trace one request path (e.g., `/api/v1/search/semantic`) from route → service → DB/index.
-
-## Practical conventions for future cleanup
-
-- Prefer adding new backend code under `app/`.
-- Keep legacy tree untouched unless doing deliberate consolidation.
-- Add migration for any model changes.
-- Ensure tests cover both extraction and API-facing logic.
+All retrieval results must remain traceable to `document_id`, page range, and `chunk_id`. New parsers should persist their raw page source before adding derived structures.

@@ -1,149 +1,151 @@
-# IndiaIR Repository Guide
+# ConGENIAl Enigma
 
-IndiaIR is an investor-relations intelligence system for ingesting BSE filings, extracting structured information, indexing both keyword + semantic retrieval, and powering grounded Q&A with citations.
+Enigma is the document-intelligence and retrieval service for the research system. It owns document acquisition, immutable file storage, extraction, page-aware chunking, notebook membership, embeddings, and cited retrieval.
 
-This README is a practical guide for **what this repo contains**, **how to run it**, and **how to work on it safely**.
+It deliberately does **not** generate research answers, run analyst agents, or ship a frontend. `glowing-garbanzo` can consume Enigma's `EvidencePack` and own those responsibilities.
 
-## 1) What this repo includes
+## MVP architecture
 
-There are two main backend code trees:
-
-- `app/`: the primary FastAPI app + pipeline modules that align with the current API routes.
-- `api/`, `services/`, `ingestion/`, `extraction/`, `indexing/`: earlier/parallel module layout still present in the repository.
-
-There are also two UI entrypoints:
-
-- `ui/app.py`: Streamlit UI for the FastAPI backend.
-- `frontend/streamlit_app.py`: additional Streamlit app variant.
-
-Because both old and newer layouts exist, start from `app/main.py` + `app/api/v1/*` for current backend behavior.
-
-## 2) High-level architecture
-
-1. **Ingestion**
-   - Poll/capture filing metadata and documents.
-2. **Extraction & classification**
-   - Classify documents (transcript, press release, financials, management changes, etc.).
-   - Parse document text into structured entities.
-3. **Storage + indexing**
-   - Persist data in PostgreSQL.
-   - Store vectors (pgvector) for semantic retrieval.
-   - Index searchable fields in Elasticsearch.
-4. **Serving layer**
-   - FastAPI exposes health, company, document, search, and Q&A endpoints.
-5. **UI**
-   - Streamlit apps provide exploratory workflows over API results.
-
-For deeper product/engineering context, see:
-
-- `TECH_SPEC.md`
-- `ARCH_DESIGN.md`
-- `QUALITY_SPEC.md`
-- `RELIABILITY_DEVOPS.md`
-- `SECURITY_COMPLIANCE.md`
-
-## 3) Repository map
-
-See full map in `docs/REPO_GUIDE.md`.
-
-Quick summary:
-
-- `app/api/v1/`: API routes (`health`, `companies`, `documents`, `search`, `qa`, `management_changes`).
-- `app/models/`: SQLAlchemy ORM models for core entities.
-- `app/pipeline/`: extraction, chunking, embeddings, indexing, orchestration, CLI.
-- `app/services/`: application service layer used by endpoints.
-- `app/db/`, `alembic/`: DB session, base metadata, migrations.
-- `tests/`: pipeline and classifier/extractor tests.
-- `scripts/`: seeding + mock ingestion utilities.
-- `ui/`, `frontend/`: Streamlit UIs.
-
-## 4) Local setup
-
-### Prereqs
-
-- Python 3.11
-- Docker + Docker Compose
-- PostgreSQL 16 and Elasticsearch 8.13 (via compose)
-
-### Install
-
-```bash
-python3.11 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-docker compose up -d postgres elasticsearch
-alembic upgrade head
-python scripts/seed_companies.py
-python scripts/mock_ingest.py
+```mermaid
+flowchart TD
+    A["BSE or manual upload"] --> B["Content-addressed file storage"]
+    B --> C["PDF text or OCR extraction"]
+    C --> D["Pages and deterministic structures"]
+    D --> E["Page-aware chunks"]
+    E --> F["PostgreSQL FTS + pgvector"]
+    F --> G["Notebook-scoped EvidencePack"]
 ```
 
-### Environment variables
+PostgreSQL is the only stateful service. Keyword retrieval uses PostgreSQL full-text search; semantic retrieval uses pgvector when embeddings are available. Hybrid search falls back to keyword search when no embedding provider is configured.
 
-Set API keys as needed:
+## What Enigma stores
 
-- `OPENAI_API_KEY` (embeddings)
-- `ANTHROPIC_API_KEY` (LLM-backed Q&A / extraction fallback)
+- Source files with SHA-256 hashes and source, rights, uploader, and version metadata
+- Extracted text per page with parser provenance and quality signals
+- Page-citable chunks with optional OpenAI embeddings
+- Structured transcript turns, presentation slides, press-release sections, financial rows, and management changes
+- Notebooks, notebook-document membership, and tags
 
-Without keys, portions of the app may run in deterministic/local fallback mode depending on configured code paths.
+Manual intake accepts PDF, UTF-8 TXT, and Markdown files up to 50 MB, plus pasted text. Re-uploading the same content for the same company reuses the existing document and can attach it to additional notebooks.
 
-## 5) Run the system
+## Run locally
 
-### Backend
+Requirements: Python 3.11+ and Docker Compose.
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+docker compose up -d postgres
+alembic upgrade head
+python scripts/seed_companies.py
 uvicorn app.main:app --reload --port 8000
 ```
 
-### UI
+`OPENAI_API_KEY` is optional. Without it, ingestion and notebook keyword retrieval still work. Scanned PDFs require the `tesseract` executable on the host.
+
+When upgrading an existing database, migration `0002` removes the legacy, non-page-citable embeddings table. Re-run `python -m app.pipeline.cli process-document <id>` for existing documents that should become searchable.
+
+Interactive API documentation is available at `http://localhost:8000/docs`.
+
+### One-command VPS deployment
+
+On a VPS with Docker Engine and the Compose plugin:
 
 ```bash
-streamlit run ui/app.py
+./deploy/vps-up.sh
 ```
 
-### Health check
+This builds the API with Tesseract OCR, starts PostgreSQL/pgvector, applies migrations, seeds companies, configures persistent volumes, and waits for both health checks. The safe default uses an SSH tunnel rather than publicly exposing the unauthenticated API. See `docs/VPS_DEPLOYMENT.md` for first deployment, public-test access, updates, logs, and shutdown instructions.
+
+## Manual document intake
+
+Create a notebook:
 
 ```bash
-curl http://localhost:8000/api/v1/health
+curl -X POST http://localhost:8000/api/v1/notebooks \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Laurus quarterly research","namespace_id":"default"}'
 ```
 
-## 6) Core API endpoints
+Upload a file and process it immediately:
 
-- `GET /api/v1/health`
+```bash
+curl -X POST http://localhost:8000/api/v1/documents/upload \
+  -F company_id=1 \
+  -F document_type=concall_transcript \
+  -F title='Q1 FY27 earnings call' \
+  -F quarter=Q1FY27 \
+  -F notebook_ids=1 \
+  -F process_now=true \
+  -F embed=true \
+  -F file=@transcript.pdf
+```
+
+Add pasted text:
+
+```bash
+curl -X POST http://localhost:8000/api/v1/documents/add-text \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "company_id": 1,
+    "title": "Management meeting notes",
+    "text": "Management expects the new plant to reach commercial production in Q4.",
+    "document_type": "other",
+    "notebook_ids": [1],
+    "process_now": true
+  }'
+```
+
+Files can be stored without synchronous extraction by setting `process_now=false`, then processed with `POST /api/v1/documents/{document_id}/process` and body `{"embed":true}`.
+
+## Notebook retrieval contract
+
+Use the HTTP endpoint:
+
+```bash
+curl -X POST http://localhost:8000/api/v1/notebooks/1/search \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"What did management say about capacity ramp-up?","mode":"hybrid","top_k":8}'
+```
+
+Or import the stable Python entry point:
+
+```python
+from app.db.session import SessionLocal
+from app.search_notebook import NotebookSearchRequest, search_notebook
+
+with SessionLocal() as db:
+    evidence_pack = search_notebook(
+        db,
+        notebook_id=1,
+        request=NotebookSearchRequest(query="capacity ramp-up", top_k=8),
+    )
+```
+
+`EvidencePack` contains ranked source chunks, stable document/page/chunk citations, company and document metadata, and retrieval methods. It contains no generated answer.
+
+## Main API surface
+
+- `POST /api/v1/documents/upload`
+- `POST /api/v1/documents/add-text`
+- `POST /api/v1/documents/{id}/process`
+- `GET /api/v1/documents/{id}`
+- `GET /api/v1/documents/{id}/pages`
+- `POST /api/v1/notebooks`
+- `PUT /api/v1/notebooks/{id}/documents/{document_id}`
+- `GET /api/v1/notebooks/{id}/documents`
+- `POST /api/v1/notebooks/{id}/search`
 - `GET /api/v1/companies`
-- `GET /api/v1/companies/{company_id}`
-- `GET /api/v1/documents`
-- `POST /api/v1/search/keyword`
-- `POST /api/v1/search/semantic`
-- `POST /api/v1/qa/ask`
-- `GET /api/v1/management-changes`
+- `GET /api/v1/health`
 
-> Tip: check route modules under `app/api/v1/` for exact request/response schemas.
-
-## 7) Testing and verification
-
-Run these before committing:
+## Verification
 
 ```bash
-python -m compileall app api ingestion extraction indexing services scripts ui frontend tests
+python -m compileall app scripts tests
 pytest
+DATABASE_URL=postgresql://indiair:password@localhost:5432/indiair alembic upgrade head --sql
 ```
 
-## 8) Known repo realities (important)
-
-- The repo currently contains **duplicate/parallel module trees** (`app/*` and older `api|services|ingestion|...` paths).
-- Some docs refer to earlier entrypoints (`api.main:app`) while current route layout in `app/api/v1` suggests using `app.main:app`.
-- Keep new feature work centered in the `app/` tree unless explicitly refactoring legacy modules.
-
-## 9) Suggested cleanup plan
-
-If you want to “fully organize” this repo next, execute in phases:
-
-1. Pick canonical backend tree (`app/`) and deprecate old duplicates.
-2. Move product/architecture specs into `docs/specs/`.
-3. Add `.env.example` with all required runtime settings.
-4. Add `Makefile` (`make setup`, `make test`, `make run-api`, `make run-ui`).
-5. Add CI for lint + tests + migration checks.
-
----
-
-If you want, I can do the next step and apply a **safe structural refactor** (non-breaking file moves + import compatibility layer) in a follow-up change.
+The canonical application is `app/`. The previous duplicate backend packages, Elasticsearch index, Streamlit frontends, and answer-generation RAG service were removed so Enigma has one clear responsibility and one runtime path.
